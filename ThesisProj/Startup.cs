@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ThesisProj.Data;
 using ThesisProj.Models;
+using ThesisProj.Services;
 
 namespace ThesisProj
 {
@@ -66,6 +68,8 @@ namespace ThesisProj
                });
 
             services.AddRazorPages();
+
+            services.AddSingleton<IEmailSender, MyEmailSender>(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -95,7 +99,7 @@ namespace ThesisProj
             {
                 endpoints.MapControllerRoute(
                        name: "areas",
-                       pattern: "{area:exsits}/{controller=Home}/{action=Index}/{id?}");
+                       pattern: "{areas:exists}/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
                        name: "default",
