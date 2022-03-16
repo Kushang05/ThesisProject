@@ -14,7 +14,6 @@ namespace ThesisProj.Models
 
         [Required(ErrorMessage = "{0} Cannot be Empty")]
         [StringLength(30, ErrorMessage = "{0} cannot be more than {1} characters")]
-        [Column("varchar")]
         public string SubjectName { get; set; }
     }
 }

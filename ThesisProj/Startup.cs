@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ThesisProj.Data;
+using ThesisProj.Models;
 
 namespace ThesisProj
 {
@@ -30,9 +31,40 @@ namespace ThesisProj
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+           
+            
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+            services
+              .AddIdentity<MyIdentityUser, MyIdentityRole>(options =>
+              {
+                  options.SignIn.RequireConfirmedAccount = true;
+
+                  options.Password.RequireLowercase = true;
+                  options.Password.RequireUppercase = true;
+                  options.Password.RequireDigit = true;
+                  options.Password.RequiredLength = 6;
+                  options.Password.RequireNonAlphanumeric = true;
+
+                  options.User.RequireUniqueEmail = true;
+
+              })
+              .AddEntityFrameworkStores<ApplicationDbContext>()
+              .AddDefaultTokenProviders();
+
+            services
+               .ConfigureApplicationCookie(options =>
+               {
+                   options.LoginPath = "/Identity/Account/Login";
+                   options.LogoutPath = "/Identity/Account/Logout";
+                   options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                   options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+                   options.SlidingExpiration = true;
+
+               });
+
             services.AddRazorPages();
         }
 
@@ -61,6 +93,10 @@ namespace ThesisProj
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                       name: "areas",
+                       pattern: "{area:exsits}/{controller=Home}/{action=Index}/{id?}");
+
                 endpoints.MapControllerRoute(
                        name: "default",
                        pattern: "{controller}/{action=Index}/{id?}");

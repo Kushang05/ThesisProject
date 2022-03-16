@@ -8,6 +8,8 @@ namespace ThesisProj.Models
     [Table("Faculties")]
     public class Faculty
     {
+
+        [Key]
         [Required]
         [Display(Name = "User ID")]
         [ForeignKey(nameof(Faculty.User))]

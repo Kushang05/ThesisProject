@@ -8,7 +8,7 @@ namespace ThesisProj.Models
     public class Student
     {
         [Required]
-        [Display(Name = "User ID")]
+        [Display(Name = "Student ID")]
         [ForeignKey(nameof(Student.User))]
         public Guid UserId { get; set; }
         public MyIdentityUser User { get; set; }

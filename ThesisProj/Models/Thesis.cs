@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System;
 
 namespace ThesisProj.Models
 {
@@ -22,14 +23,12 @@ namespace ThesisProj.Models
 
 
         // Student ID
-        [Display(Name = "Student Name")]
+
         [Required]
-        [ForeignKey(nameof(Thesis.Student))]
-        public int StudentId { get; set; }
-
-        [Display(Name = "Student Name")]
-        public Student Student { get; set; }
-
+        [Display(Name = "Student ID")]
+        [ForeignKey(nameof(Thesis.User))]
+        public Guid UserId { get; set; }
+        public MyIdentityUser User { get; set; }
 
 
         //Subject ID
@@ -44,7 +43,7 @@ namespace ThesisProj.Models
 
 
         //Faculty ID
-        [Display(Name = "Faculty Name")]
+        [Display(Name = "Mentor Name")]
         [Required]
         [ForeignKey(nameof(Thesis.Faculty))]
         public int FacultyId { get; set; }
@@ -53,16 +52,16 @@ namespace ThesisProj.Models
         public Faculty Faculty { get; set; }
 
 
+        //[Display(Name = "Start Date")]
+        //public DateTime StartDate{ get; set; }
 
-        [Display(Name = "Start Date")]
-        public int StartDate{ get; set; }
 
-       
-        [Display(Name = "End Date")]
-        public int EndDate{ get; set; }
+        //[Display(Name = "End Date")]
+        //public DateTime EndDate{ get; set; }
 
-        [Display(Name = "Completed %")]
-        public int CompletionPercentage { get; set; }
+
+        //[Display(Name = "Completed %")]
+        //public int CompletionPercentage { get; set; }
 
     }
 }

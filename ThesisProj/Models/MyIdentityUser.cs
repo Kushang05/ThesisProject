@@ -14,7 +14,6 @@ namespace ThesisProj.Models
         [StringLength(50, ErrorMessage = "{0} cannot be more than {1} characters")]
         public string DisplayName { get; set; }
 
-
         [Display(Name = "Date of Birth")]
         [Required]
         [PersonalData]
@@ -30,18 +29,17 @@ namespace ThesisProj.Models
         [PersonalData]
         public MyIdentityGenders Gender { get; set; }
 
-
         [Required]
         public MyIdentityRoleNames Role { get; set; }
 
 
-        #region Navigational Proprties to the Student Model
-        public Student Student { get; set; }
-        #endregion
+        //#region Navigational Proprties to the Student Model
+        //public Student Student { get; set; }
+        //#endregion
 
 
-        #region Navigational Proprties to the Faculty Model
-        public Faculty Faculty { get; set; }
-        #endregion
+        //#region Navigational Proprties to the Faculty Model
+        //public Faculty Faculty { get; set; }
+        //#endregion
     }
 }

@@ -10,10 +10,10 @@ namespace ThesisProj.Models.Enums
             [Display(Name ="Male")]
             Male,
 
-            [Display(Name ="Male")]
+            [Display(Name ="Female")]
             Female,
 
-            [Display(Name ="Male")]
+            [Display(Name ="ThirdGender")]
             ThirdGender
      
     }
