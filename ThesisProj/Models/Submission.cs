@@ -13,8 +13,6 @@ namespace ThesisProj.Models
         [Key]
         public int SubmissionId { get; set; }
 
-
-        //Thesis Id
         [Display(Name = "Thesis Name")]
         [Required]
         [ForeignKey(nameof(Submission.Thesis))]
@@ -24,9 +22,7 @@ namespace ThesisProj.Models
 
         [Display(Name ="Description")]
         public string SubmissionDescription { get; set; }
-
-        
-
+             
         [Required]
         [Display(Name = "Submitted Date")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
@@ -35,15 +31,10 @@ namespace ThesisProj.Models
         [Required(ErrorMessage ="Cannot be Empty")]
         public MyStatus Status { get; set; }
 
-        //[Display(Name = "Reviewed By")]
-        //public string ReviewedBy { get; set; }
-
-
-        //[Display(Name = "Reviewed Date")]
-        //public int ReviewedDate { get; set; }
 
         [MaxLength(50,ErrorMessage ="{0} cannot be more than {1}")]
         public string Remarks { get; set; }
 
     }
 }
+      

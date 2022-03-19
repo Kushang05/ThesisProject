@@ -38,8 +38,8 @@ namespace ThesisProj.Models
         //#endregion
 
 
-        //#region Navigational Proprties to the Faculty Model
-        //public Faculty Faculty { get; set; }
-        //#endregion
+        #region Navigational Proprties to the Faculty Model
+        public Faculty Faculty { get; set; }
+        #endregion
     }
 }

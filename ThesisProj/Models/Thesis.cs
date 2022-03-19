@@ -22,6 +22,7 @@ namespace ThesisProj.Models
         public string ProjectDescription { get; set; }
 
 
+
         // Student ID
 
         [Required]
@@ -51,17 +52,6 @@ namespace ThesisProj.Models
         [Display(Name = "Faculty Name")]
         public Faculty Faculty { get; set; }
 
-
-        //[Display(Name = "Start Date")]
-        //public DateTime StartDate{ get; set; }
-
-
-        //[Display(Name = "End Date")]
-        //public DateTime EndDate{ get; set; }
-
-
-        //[Display(Name = "Completed %")]
-        //public int CompletionPercentage { get; set; }
 
     }
 }

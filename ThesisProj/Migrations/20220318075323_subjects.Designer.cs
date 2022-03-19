@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ThesisProj.Data;
 
 namespace ThesisProj.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220318075323_subjects")]
+    partial class subjects
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,27 +124,13 @@ namespace ThesisProj.Migrations
 
             modelBuilder.Entity("ThesisProj.Models.Faculty", b =>
                 {
-                    b.Property<int>("FacultyId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FacultyType")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)")
-                        .HasColumnName("varchar");
-
-                    b.Property<Guid>("FacultyUserId")
+                    b.Property<Guid>("FacultyId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Subjects")
                         .HasColumnType("int");
 
                     b.HasKey("FacultyId");
-
-                    b.HasIndex("FacultyUserId")
-                        .IsUnique();
 
                     b.HasIndex("Subjects");
 
@@ -270,6 +258,10 @@ namespace ThesisProj.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("EnrollmentId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ParentName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -289,8 +281,8 @@ namespace ThesisProj.Migrations
 
                     b.Property<string>("SubjectName")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.HasKey("SubjectId");
 
@@ -352,7 +344,7 @@ namespace ThesisProj.Migrations
                 {
                     b.HasOne("ThesisProj.Models.MyIdentityUser", "User")
                         .WithOne("Faculty")
-                        .HasForeignKey("ThesisProj.Models.Faculty", "FacultyUserId")
+                        .HasForeignKey("ThesisProj.Models.Faculty", "FacultyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -370,8 +362,8 @@ namespace ThesisProj.Migrations
             modelBuilder.Entity("ThesisProj.Models.Student", b =>
                 {
                     b.HasOne("ThesisProj.Models.MyIdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .WithOne("Student")
+                        .HasForeignKey("ThesisProj.Models.Student", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -381,6 +373,8 @@ namespace ThesisProj.Migrations
             modelBuilder.Entity("ThesisProj.Models.MyIdentityUser", b =>
                 {
                     b.Navigation("Faculty");
+
+                    b.Navigation("Student");
                 });
 #pragma warning restore 612, 618
         }

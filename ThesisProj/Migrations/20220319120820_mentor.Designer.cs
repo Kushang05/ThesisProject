@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ThesisProj.Data;
 
 namespace ThesisProj.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220319120820_mentor")]
+    partial class mentor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,10 +124,8 @@ namespace ThesisProj.Migrations
 
             modelBuilder.Entity("ThesisProj.Models.Faculty", b =>
                 {
-                    b.Property<int>("FacultyId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("FacultyId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FacultyType")
                         .IsRequired()
@@ -133,16 +133,10 @@ namespace ThesisProj.Migrations
                         .HasColumnType("nvarchar(30)")
                         .HasColumnName("varchar");
 
-                    b.Property<Guid>("FacultyUserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("Subjects")
                         .HasColumnType("int");
 
                     b.HasKey("FacultyId");
-
-                    b.HasIndex("FacultyUserId")
-                        .IsUnique();
 
                     b.HasIndex("Subjects");
 
@@ -265,21 +259,6 @@ namespace ThesisProj.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("ThesisProj.Models.Student", b =>
-                {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ParentName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Students");
-                });
-
             modelBuilder.Entity("ThesisProj.Models.Subject", b =>
                 {
                     b.Property<int>("SubjectId")
@@ -351,8 +330,8 @@ namespace ThesisProj.Migrations
             modelBuilder.Entity("ThesisProj.Models.Faculty", b =>
                 {
                     b.HasOne("ThesisProj.Models.MyIdentityUser", "User")
-                        .WithOne("Faculty")
-                        .HasForeignKey("ThesisProj.Models.Faculty", "FacultyUserId")
+                        .WithMany()
+                        .HasForeignKey("FacultyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -365,22 +344,6 @@ namespace ThesisProj.Migrations
                     b.Navigation("Subject");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ThesisProj.Models.Student", b =>
-                {
-                    b.HasOne("ThesisProj.Models.MyIdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ThesisProj.Models.MyIdentityUser", b =>
-                {
-                    b.Navigation("Faculty");
                 });
 #pragma warning restore 612, 618
         }

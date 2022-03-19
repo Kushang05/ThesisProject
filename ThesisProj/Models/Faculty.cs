@@ -9,13 +9,14 @@ namespace ThesisProj.Models
     public class Faculty
     {
 
-        [Key]
-        [Required]
-        [Display(Name = "User ID")]
+        [Display(Name = "Faculty")]
         [ForeignKey(nameof(Faculty.User))]
-        public Guid FacultyId { get; set; }
+        public Guid FacultyUserId { get; set; }
         public MyIdentityUser User { get; set; }
 
+        [Key]
+        [Required]
+        public int FacultyId { get; set; }
 
         [Required(ErrorMessage = "{0} Cannot be Empty")]
         [StringLength(30, ErrorMessage = "{0} cannot be more than {1} characters")]
@@ -24,9 +25,9 @@ namespace ThesisProj.Models
 
 
         [Display(Name = "Subject Id")]
-        [ForeignKey(nameof(Faculty.Student))]
+        [ForeignKey(nameof(Faculty.Subject))]
         public int Subjects { get; set; }
-        public Student Student { get; set; }
+        public Subject Subject { get; set; }
 
     }
 }
