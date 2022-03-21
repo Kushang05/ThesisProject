@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System;
+using System.Collections.Generic;
 
 namespace ThesisProj.Models
 {
@@ -10,47 +11,40 @@ namespace ThesisProj.Models
         [Required]
         [Display(Name = "Project ID")]
         [Key]
-        public int ProjectID { get; set; }
+        public int ThesisId { get; set; }
 
         [Required(ErrorMessage = "{0} Cannot be Empty")]
         [StringLength(30, ErrorMessage = "{0} cannot be more than {1} characters")]
         [Column("varchar")]
-        public string ProjectTitle { get; set; }
-        
-        
-        [Required(ErrorMessage = "{0} Cannot be Empty")]
-        public string ProjectDescription { get; set; }
-
-
+        public string Title { get; set; }
 
         // Student ID
-
         [Required]
-        [Display(Name = "Student ID")]
-        [ForeignKey(nameof(Thesis.User))]
-        public Guid UserId { get; set; }
-        public MyIdentityUser User { get; set; }
+        [Display(Name = "Student EnrollmentId")]
+        [ForeignKey(nameof(Thesis.Student))]
+        public string EnrollmentId { get; set; }
+        public ICollection<Student> Student{ get; set; }
 
 
         //Subject ID
-        [Display(Name = "Subject Name")]
+        [Display(Name = "Subject")]
         [Required]
         [ForeignKey(nameof(Thesis.Subject))]
-        public int SubjecttId { get; set; }
+        public int SubjectId { get; set; }
 
-        [Display(Name = "Subject Name")]
+        [Display(Name = "Subject")]
         public Subject Subject { get; set; }
 
 
 
         //Faculty ID
-        [Display(Name = "Mentor Name")]
+        [Display(Name = "Faculty")]
         [Required]
         [ForeignKey(nameof(Thesis.Faculty))]
-        public int FacultyId { get; set; }
+        public string FacultyId { get; set; }
 
-        [Display(Name = "Faculty Name")]
-        public Faculty Faculty { get; set; }
+        [Display(Name = "Faculty")]
+        public ICollection<Faculty> Faculty { get; set; }
 
 
     }

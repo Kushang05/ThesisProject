@@ -28,13 +28,11 @@ namespace ThesisProj.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int SubmittedDate { get; set; }
 
-        [Required(ErrorMessage ="Cannot be Empty")]
-        public MyStatus Status { get; set; }
-
-
-        [MaxLength(50,ErrorMessage ="{0} cannot be more than {1}")]
-        public string Remarks { get; set; }
-
+        [StringLength(150)]
+        public string FileUrl { get; set; }
+        
+        [StringLength(60)]
+        public string FileCOntentType { get; set; }
     }
 }
       

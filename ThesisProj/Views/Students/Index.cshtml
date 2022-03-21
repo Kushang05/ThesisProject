@@ -1,30 +1,25 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@model IEnumerable<ThesisProj.ViewModels.StudentListViewModel>
-
+﻿@model IEnumerable<ThesisProj.Models.Student>
 
 @{
-    ViewData["Title"] = "List of Students";
+    ViewData["Title"] = "Index";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1>Index</h1>
 
 <p>
-    <a class="btn btn-dark" asp-area="Identity" asp-page="/Account/RegisterStudent">Add Student</a>
+    <a asp-action="Create">Create New</a>
 </p>
-
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.User)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DisplayName)
+                @Html.DisplayNameFor(model => model.EnrollmentId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                @Html.DisplayNameFor(model => model.ParentName)
             </th>
             <th></th>
         </tr>
@@ -33,14 +28,19 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @Html.DisplayFor(modelItem => item.User.DisplayName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DisplayName)
+                @Html.DisplayFor(modelItem => item.EnrollmentId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>          
+                @Html.DisplayFor(modelItem => item.ParentName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+            </td>
         </tr>
 }
     </tbody>

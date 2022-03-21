@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using ThesisProj.Models.Enums;
 using System;
+using System.Collections.Generic;
 
 namespace ThesisProj.Models
 {
@@ -15,19 +16,11 @@ namespace ThesisProj.Models
         public MyIdentityUser User { get; set; }
 
         [Key]
-        [Required]
-        public int FacultyId { get; set; }
-
-        [Required(ErrorMessage = "{0} Cannot be Empty")]
-        [StringLength(30, ErrorMessage = "{0} cannot be more than {1} characters")]
-        [Column("varchar")]
-        public string FacultyType { get; set; }
+        [Required(ErrorMessage ="{0} cannot be empty")]
+        [StringLength(6, ErrorMessage ="{0} be of lenght {1}")]
+        public string FacultyId { get; set; }
 
 
-        [Display(Name = "Subject Id")]
-        [ForeignKey(nameof(Faculty.Subject))]
-        public int Subjects { get; set; }
-        public Subject Subject { get; set; }
-
+        public ICollection<Thesis> Theses { get; set; }
     }
 }

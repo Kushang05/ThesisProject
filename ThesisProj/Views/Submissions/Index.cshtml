@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ThesisProj.Models.Submission>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Thesis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubmissionDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubmittedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileCOntentType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Thesis.EnrollmentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubmissionDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubmittedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileCOntentType)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SubmissionId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SubmissionId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SubmissionId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
