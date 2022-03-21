@@ -13,6 +13,30 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\css\maps\style.css.map" />
+    <None Include="wwwroot\js\script.js" />
+    <None Include="wwwroot\plugins\aos\aos.js" />
+    <None Include="wwwroot\plugins\bootstrap\bootstrap.min.js" />
+    <None Include="wwwroot\plugins\filterizr\jquery.filterizr.min.js" />
+    <None Include="wwwroot\plugins\google-map\gmap.js" />
+    <None Include="wwwroot\plugins\jQuery\jquery.min.js" />
+    <None Include="wwwroot\plugins\slick\fonts\slick.svg" />
+    <None Include="wwwroot\plugins\slick\slick.min.js" />
+    <None Include="wwwroot\plugins\themify-icons\fonts\themify.svg" />
+    <None Include="wwwroot\plugins\venobox\venobox.min.js" />
+    <None Include="wwwroot\scss\style.scss" />
+    <None Include="wwwroot\scss\templates\_homepage.scss" />
+    <None Include="wwwroot\scss\templates\_navigation.scss" />
+    <None Include="wwwroot\scss\templates\_otherspage.scss" />
+    <None Include="wwwroot\scss\templates\_slider.scss" />
+    <None Include="wwwroot\scss\_buttons.scss" />
+    <None Include="wwwroot\scss\_common.scss" />
+    <None Include="wwwroot\scss\_mixins.scss" />
+    <None Include="wwwroot\scss\_typography.scss" />
+    <None Include="wwwroot\scss\_variables.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.12" />
